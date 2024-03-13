@@ -1,6 +1,6 @@
-# Issue Submission
+# Purchase Submission
 
-This automation features a basic issue submission workflow that posts the issue
+This automation features a basic purchase submission workflow that posts the purchase
 raised to channel.
 
 **Guide Outline**:
@@ -38,7 +38,7 @@ Start by cloning this repository:
 
 ```zsh
 # Clone this project onto your machine
-$ slack create my-app -t slack-samples/deno-issue-submission
+$ slack create my-app -t slack-samples/deno-purchase-submission
 
 # Change into the project directory
 $ cd my-app
@@ -101,7 +101,7 @@ or deployed!**
 To manually create a trigger, use the following command:
 
 ```zsh
-$ slack trigger create --trigger-def triggers/submit_issue.ts
+$ slack trigger create --trigger-def triggers/submit_purchase.ts
 ```
 
 ## Datastores

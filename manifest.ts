@@ -1,6 +1,6 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import { PostIssueMessage } from "./functions/post_issue_message.ts";
-import SubmitIssueWorkflow from "./workflows/submit_issue.ts";
+import { PostPurchaseMessage } from "./functions/post_purchase_message.ts";
+import SubmitPurchaseWorkflow from "./workflows/submit_purchase.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -9,10 +9,11 @@ import SubmitIssueWorkflow from "./workflows/submit_issue.ts";
  */
 export default Manifest({
   name: "kz-learningbudget-app",
-  description: "A basic sample that demonstrates issue submission to channel",
+  description:
+    "A basic sample that demonstrates purchase submission to channel",
   icon: "assets/default_new_app_icon.png",
-  workflows: [SubmitIssueWorkflow],
-  functions: [PostIssueMessage],
+  workflows: [SubmitPurchaseWorkflow],
+  functions: [PostPurchaseMessage],
   outgoingDomains: ["localhost"],
   botScopes: ["commands", "chat:write", "chat:write.public"],
 });

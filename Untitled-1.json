@@ -1,0 +1,161 @@
+{
+  "manifest":{
+    "_metadata":{
+      "major_version":2
+    },
+    "display_information":{
+      "name":"kz-learningbudget-app (local)",
+      "description":"A basic sample that demonstrates purchase submission to channel"
+    },
+    "features":{
+      "app_home":{
+        "messages_tab_enabled":true,
+        "messages_tab_read_only_enabled":true
+      },
+      "bot_user":{
+        "display_name":"kz-learningbudget-app (local)"
+      }
+    },
+    "oauth_config":{
+      "scopes":{
+        "bot":["commands","chat:write","chat:write.public"]
+      },
+      "token_management_enabled":false
+    },
+    "settings":{
+      "socket_mode_enabled":true,
+      "org_deploy_enabled":true,
+      "interactivity":{
+        "is_enabled":true
+      },
+      "incoming_webhooks":{},
+      "event_subscriptions":{},
+      "function_runtime":"local",
+      "siws_links":{}
+    },
+    "functions":{
+      "post_purchase_message":{
+        "title":"Post an purchase to channel",
+        "description":"Create an purchase message from submitted form",
+        "input_parameters":{
+          "properties":{
+            "channel":{
+              "type":"slack#/types/channel_id"
+            },
+            "submitting_user":{
+              "type":"slack#/types/user_id"
+            },
+            "email":{
+              "type":"string"
+            },
+            "product_type":{
+              "type":"string",
+              "description":"Type of product (book, course, certification, trainning, etc.)"
+            },
+            "product_name":{
+              "type":"string",
+              "description":"A brief description of the product"
+            },
+            "product_link":{
+              "type":"string",
+              "description":"Link to the product"
+            },
+            "expected_date":{
+              "type":"string",
+              "description":"Usefull when the product hasn't been purchased yet by the user"
+            },
+            "purchased_date":{
+              "type":"string",
+              "description":"Date of the purchase"
+            },
+            "currency":{
+              "type":"string",
+              "description":"Use USD dollars as the default currency for the product"
+            },
+            "price":{
+              "type":"number",
+              "description":"Full price of the product in the currency of the user's country"
+            },
+            "exchange_rate":{
+              "type":"number",
+              "description":"Full price of the product in the currency of the user's country"
+            }
+          },
+          "required":["submitting_user","email","product_name","product_link","product_type","price","exchange_rate","currency","channel"]
+        },
+        "output_parameters":{
+          "properties":{
+            "channel":{
+              "type":"slack#/types/channel_id"},
+              "submitting_user": {
+                "type":"slack#/types/user_id"
+              },
+              "email":{
+                "type":"string"
+              },
+              "product_type":{
+                "type":"string",
+                "description":"Type of product (book, course, certification, trainning, etc.)"
+              },
+              "product_name":{
+                "type":"string",
+                "description":"A brief description of the product"
+              },
+              "product_link":{
+                "type":"string",
+                "description":"Link to the product"
+              },
+              "expected_date":{
+                "type":"string",
+                "description":"Usefull when the product hasn't been purchased yet by the user"
+              },
+              "purchased_date":{
+                "type":"string",
+                "description":"Date of the purchase"
+              },
+              "currency":{
+                "type":"string",
+                "description":"Use USD dollars as the default currency for the product"
+              },
+              "price":{
+                "type":"number",
+                "description":"Full price of the product in the currency of the user's country"
+              },
+              "exchange_rate":{
+                "type":"number",
+                "description":"Full price of the product in the currency of the user's country"
+              }
+            },
+            "required":["submitting_user","email","product_name","product_link","product_type","price","exchange_rate","currency"]
+          }
+        }
+      },
+      "types":{},
+      "workflows":{
+        "submit_purchase":{
+          "title":"Submit a purchase",
+          "description":"Submit a purchase to the channel",
+          "input_parameters":{
+            "properties":{
+              "interactivity":{
+                "type":"slack#/types/interactivity"
+              },
+              "channel":{
+                "type":"slack#/types/channel_id"
+              }
+            },
+            "required":["channel","interactivity"]
+          },
+          "steps":[
+            {
+              "id":"0",
+              "function_id":"slack#/functions/open_form",
+              "inputs":{
+                "title":"Submit an purchase",
+                "interactivity":"{{inputs.interactivity}}",
+                "submit_label":"Submit",
+                "fields":{"elements":[{
+                  "name":"product_type",
+                  "title":"Type",
+                  "type":"string",
+                  "enum":[":white_circle:",":large_blue_circle:",":large_green_circle:",":large_yellow_circle:",":red_circle:"],"choices":[{"value":"BOOK","title":"Books"},{"value":"COURSE","title":"Courses"},{"value":"SUBSCRIPTION","title":"Subscriptions"},{"value":"CERTIFICATION","title":"Certification"},{"value":"OTHER","title":"Other"}]},{"name":"product_name","title":"Item name","type":"string","long":false},{"name":"product_link","title":"Link to the item","type":"string","long":true},{"name":"currency","title":"Currency","type":"string","long":false},{"name":"price","title":"Full price","type":"number"},{"name":"exchange_rate","title":"Exchange rate","type":"number","description":"1 USD = ?"},{"name":"expected_date","title":"Expected date of purchase","type":"string"},null,{"name":"purchase_date","title":"Date of the actual purchase","type":"string"}],"required":["product_type","product_name","product_link","currency","price","exchange_rate"]}}},{"id":"1","function_id":"#/functions/post_purchase_message","inputs":{"channel":"{{inputs.channel}}","submitting_user":"..."{{steps.0.interactivity.interactor.id}}","email":"{{steps.0.fields.elements.email}}","product_type":"{{steps.0.fields.elements.product_type}}","product_name":"{{steps.0.fields.elements.product_name}}","product_link":"{{steps.0.fields.elements.product_link}}","expected_date":"{{steps.0.fields.elements.expected_date}}","purchased_date":"{{steps.0.fields.elements.purchase_date}}","currency":"{{steps.0.fields.elements.currency}}","price":"{{steps.0.fields.elements.price}}","exchange_rate":"{{steps.0.fields.elements.exchange_rate}}"}}]}},"outgoing_domains":["localhost"]},"app_id":"A06P0ULKC85"}
