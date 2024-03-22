@@ -149,14 +149,14 @@ const inputForm = SubmitPurchaseWorkflow.addStep(
 SubmitPurchaseWorkflow.addStep(PostPurchaseMessage, {
   channel: SubmitPurchaseWorkflow.inputs.channel,
   submitting_user: inputForm.outputs.interactivity.interactor.id,
-  productType: inputForm.outputs.fields.elements.productType,
-  productName: inputForm.outputs.fields.elements.productName,
-  productLink: inputForm.outputs.fields.elements.productLink,
-  expectedDate: inputForm.outputs.fields.elements.expectedDate,
-  purchasedDate: inputForm.outputs.fields.elements.purchaseDate,
-  currency: inputForm.outputs.fields.elements.currency,
-  price: inputForm.outputs.fields.elements.price,
-  exchangeRate: inputForm.outputs.fields.elements.exchangeRate,
+  productType: inputForm.outputs.fields.productType,
+  productName: inputForm.outputs.fields.productName,
+  productLink: inputForm.outputs.fields.productLink,
+  expectedDate: inputForm.outputs.fields.expectedDate,
+  purchasedDate: inputForm.outputs.fields.purchaseDate,
+  currency: inputForm.outputs.fields.currency,
+  price: inputForm.outputs.fields.price,
+  exchangeRate: inputForm.outputs.fields.exchangeRate,
 });
 
 export default SubmitPurchaseWorkflow;
