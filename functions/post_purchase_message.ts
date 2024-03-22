@@ -36,11 +36,11 @@ export const PostPurchaseMessage = DefineFunction({
       expectedDate: {
         type: Schema.types.string,
         description:
-          "Usefull when the product hasn't been purchased yet by the user",
+          "Usefull when the product hasn't been purchased yet by the user  (YYYY-MM-DD)",
       },
       purchasedDate: {
         type: Schema.types.string,
-        description: "Date of the purchase",
+        description: "Date of the purchase (YYYY-MM-DD)",
       },
       currency: {
         type: Schema.types.string,
